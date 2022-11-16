@@ -1,7 +1,7 @@
 public class Item {
     String name;
     String description;
-    boolean consumable;
+    //boolean consumable;
     boolean consumed; 
     boolean inHands = false;
 
@@ -11,7 +11,7 @@ public class Item {
     public Item(String name, String description, boolean consumable, boolean consumed) { 
         this.name = name; 
         this.description = description; 
-        this.consumable = consumable; 
+        //this.consumable = consumable; 
     }
 
     public static void main(String[] args) {
