@@ -1,3 +1,6 @@
+/**
+ * Represents items which a player can interact with and use 
+ */
 public class Item {
     private String name;
     private String description;
@@ -28,18 +31,18 @@ public class Item {
     public boolean getConsumed() { 
         return consumed; 
     }
-    
-    public void setConsumed(boolean consumed) { 
-        this.consumed = consumed; 
-    }
 
     /** 
-     * Overrides toString method so that it returns the description of an Item 
+     * Overrides toString method for Items so that it returns the description of an Item 
      */
     public String toString() {
         return description; 
     }
 
+    /**
+     * Main method for testing 
+     * @param args Array for command line arguments which is not currently being used  
+     */
     public static void main(String[] args) {
         
     }

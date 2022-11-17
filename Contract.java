@@ -1,3 +1,6 @@
+/**
+ * Interface which represents methods that must be implemented by the Player class 
+ */
 public interface Contract {
 
     void grab(String item);

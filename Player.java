@@ -1,5 +1,7 @@
 import java.util.*;
-
+/**
+ * Represents the player character in a single player game 
+ */
 public class Player {
     String name = "Adventurer";
     private int hP = 20;
@@ -138,8 +140,8 @@ public class Player {
 
     /**
      * Allows a Player to walk left and right through 
-     * @param direction
-     * @return
+     * @param direction String representing the direction the Player wants to walk 
+     * @return boolean showing whether or not the Player was able to walk to another room in the specified direction
      */
     public boolean walk(String direction) { 
         direction = direction.toLowerCase(); 
@@ -149,7 +151,7 @@ public class Player {
             currentRoom += 1;
         }
 
-        if (currentRoom > -1 && currentRoom < 4) {
+        if (currentRoom > game.minRoom && currentRoom < game.maxRoom) {
             System.out.println("You have walked " + direction + " to Room " + currentRoom);
             return true; 
         } else {
@@ -169,7 +171,7 @@ public class Player {
         Item apple = new Item("apple", "A nutritious red fruit", true, false); 
         myGame.allItems.put("apple", apple);
 
-        //Testing item grab, drop, and examine methods 
+        //Testing item grab, drop, undo, and examine methods 
         Player playerOne = new Player(myGame); 
         playerOne.grab("apple"); 
         //playerOne.use("apple"); //This works 
