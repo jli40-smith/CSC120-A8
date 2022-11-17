@@ -80,7 +80,19 @@ public class Player {
             System.out.println("You cannot drop an item you do not own");
             return item; 
         }
+    }
 
+    /**
+     * Allows a player to pick up the item which was last dropped and add it back into their inventory 
+     */
+    public void undo() { 
+        if (lastDroppedItem == null) {
+            System.out.println("There is nothing else to pick up again");
+        } else {
+            this.inventory.add(lastDroppedItem); 
+            System.out.println("The dropped " + lastDroppedItem + " was added back to your inventory");
+            this.lastDroppedItem = null; 
+        }
     }
 
     /**
@@ -106,19 +118,6 @@ public class Player {
             System.out.println("You have used " + item);
         } else {
             System.out.println("You cannot use an item you don't possess");
-        }
-    }
-
-    /**
-     * Allows a player to pick up the item which was last dropped and add it back into their inventory 
-     */
-    public void undo() { 
-        if (lastDroppedItem == null) {
-            System.out.println("There is nothing to pick up again");
-        } else {
-            this.inventory.add(lastDroppedItem); 
-            System.out.println("The dropped " + lastDroppedItem + " was added back to your inventory");
-            this.lastDroppedItem = null; 
         }
     }
 
@@ -155,7 +154,7 @@ public class Player {
             System.out.println("You have walked " + direction + " to Room " + currentRoom);
             return true; 
         } else {
-            System.out.println("There is no other room to the  " + direction + " of this one");
+            System.out.println("There is no other room to the " + direction + " of this one");
             return false; 
         }
     }
