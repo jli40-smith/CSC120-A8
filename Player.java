@@ -5,7 +5,7 @@ public class Player {
     private int hP = 20;
     private int size = 1; //Player is at normal size 
     private boolean canSleep = false;
-    private Room currentRoom; 
+    private int currentRoom = 1; 
     private ArrayList inventory = new ArrayList<String>(); 
     Game game; 
 
@@ -118,6 +118,25 @@ public class Player {
         }
     }
 
+    public boolean walk(String direction) { 
+        direction = direction.toLowerCase(); 
+        if (direction.equals("left"))  { 
+            currentRoom -= 1; 
+        } else if (direction.equals("right")) {
+            currentRoom += 1;
+        }
+
+        if (currentRoom > -1 && currentRoom < 4) {
+            System.out.println("You have walked " + direction + " to Room " + currentRoom);
+            return true; 
+        } else {
+            System.out.println("There is no other room to the  " + direction + " of this one");
+            return false; 
+        }
+
+    }
+
+
     /**
      * Main method for testing 
      * @param args Array for command line arguments which is not currently being used  
@@ -142,6 +161,15 @@ public class Player {
 
         playerOne.fly(0, 0); 
         playerOne.fly(0, 1); 
+
+        //Testing walk 
+        playerOne.walk("left"); 
+        playerOne.walk("left"); 
+        playerOne.walk("right"); 
+        playerOne.walk("right"); 
+        playerOne.walk("right"); 
+        playerOne.walk("right"); 
+        playerOne.walk("right"); 
 
     }
 
