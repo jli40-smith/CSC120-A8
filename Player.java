@@ -197,7 +197,6 @@ public class Player {
         playerOne.walk("right"); 
         playerOne.walk("right"); 
         playerOne.walk("right"); 
-
     }
 
 }
