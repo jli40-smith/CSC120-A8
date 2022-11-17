@@ -9,6 +9,6 @@ public interface Contract {
     Number shrink();
     Number grow();
     void rest();
-    //void undo();
+    void undo();
 
 }

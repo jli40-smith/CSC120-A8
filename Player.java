@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Player {
     String name = "Adventurer";
@@ -6,7 +6,8 @@ public class Player {
     private int size = 1; //Player is at normal size 
     private boolean canSleep = false;
     private int currentRoom = 1; 
-    private ArrayList inventory = new ArrayList<String>(); 
+    private ArrayList<String> inventory = new ArrayList<String>(); 
+    private String lastDroppedItem;  
     Game game; 
 
     public Player(Game game) { 
@@ -56,6 +57,7 @@ public class Player {
     public void grab(String item) { 
         if (game.allItems.containsKey(item)) {
             inventory.add(item); 
+            System.out.println("You grabbed " + item);
         } else { 
             System.out.println("That item is not available");
         }
@@ -66,11 +68,14 @@ public class Player {
      * @param item name of the item being dropped 
      * @return String name of the dropped item 
      */
-    public String drop(String item) { 
+    private String drop(String item) { 
         if (inventory.contains(item)) { 
             inventory.remove(item);
+            this.lastDroppedItem = item; 
+            System.out.println("You dropped " + item);
             return item;
         } else {
+            System.out.println("You cannot drop an item you do not own");
             return item; 
         }
 
@@ -95,10 +100,20 @@ public class Player {
     public void use(String item) { 
         if (inventory.contains(item)) { 
             this.drop(item);
-            game.allItems.remove(item); 
+            //game.allItems.remove(item); //causes problems because items picked up again won't be able to be examined
             System.out.println("You have used " + item);
         } else {
             System.out.println("You cannot use an item you don't possess");
+        }
+    }
+
+    public void undo() { 
+        if (lastDroppedItem == null) {
+            System.out.println("There is nothing to pick up again");
+        } else {
+            this.inventory.add(lastDroppedItem); 
+            System.out.println("The dropped " + lastDroppedItem + " was added back to your inventory");
+            this.lastDroppedItem = null; 
         }
     }
 
@@ -118,6 +133,11 @@ public class Player {
         }
     }
 
+    /**
+     * Allows a Player to walk left and right through 
+     * @param direction
+     * @return
+     */
     public boolean walk(String direction) { 
         direction = direction.toLowerCase(); 
         if (direction.equals("left"))  { 
@@ -133,9 +153,7 @@ public class Player {
             System.out.println("There is no other room to the  " + direction + " of this one");
             return false; 
         }
-
     }
-
 
     /**
      * Main method for testing 
@@ -154,6 +172,10 @@ public class Player {
         //playerOne.use("apple"); //This works 
         playerOne.examine("apple");
         playerOne.drop("apple"); 
+        playerOne.undo();
+        playerOne.examine("apple");
+        playerOne.undo();
+        playerOne.use("apple");
 
         //Testing fly
         myGame.flyableMap[0][0] = "Area 1";
