@@ -2,7 +2,7 @@ import java.util.*;
 /**
  * Represents the player character in a single player game 
  */
-public class Player {
+public class Player implements Contract{
     String name = "Adventurer";
     private int hP = 20;
     private int size = 1; //Player is at normal size 
@@ -70,7 +70,7 @@ public class Player {
      * @param item name of the item being dropped 
      * @return String name of the dropped item 
      */
-    private String drop(String item) { 
+    public String drop(String item) { 
         if (inventory.contains(item)) { 
             inventory.remove(item);
             this.lastDroppedItem = item; 
