@@ -53,7 +53,7 @@ public class Player {
     }
 
     /** 
-     * Grabs and adds an item's name to the Player's inventory 
+     * Grabs and adds an item's name to the Player's inventory if it is in the allItems Hashtable
      * @param item String name of the item being grabbed 
      */
     public void grab(String item) { 
@@ -108,7 +108,7 @@ public class Player {
     }
     
     /**
-     * Uses an Item and removes it from the Player's inventory and the allItems Hashtable if it is in the Player's inventory, 
+     * Uses an Item and removes it from the Player's inventory if it is in the Player's inventory, 
      * @param item to be used 
      */
     public void use(String item) { 

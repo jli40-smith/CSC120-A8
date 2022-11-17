@@ -5,7 +5,7 @@ My class represents the player character in a text-based adventure video game wh
 
 - What additional methods (if any) did you implement alongside those listed in the interface?
 I implemented some constructors and accessors and manipulators for the Game and Item classes. They allow a player to 
-interact with Items which have attributes that, for instance, allow Items to return a String description of what they are. The Game class aggregates Items in a Hashtable to track which Items are available to the Player or unavailable (for example, after those Items are used, the references to them are lost). 
+interact with Items which have attributes that, for instance, allow Items to return a String description of what they are. The Game class aggregates Items in a Hashtable to track which Items are available to the Player. The Item class also has a overridden toString() method which prints out the description of an Item. 
 
 - What worked, what didn't, what advice would you give someone taking this course in the future?
 
