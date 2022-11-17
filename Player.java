@@ -107,6 +107,9 @@ public class Player {
         }
     }
 
+    /**
+     * Allows a player to pick up the item which was last dropped and add it back into their inventory 
+     */
     public void undo() { 
         if (lastDroppedItem == null) {
             System.out.println("There is nothing to pick up again");
