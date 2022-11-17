@@ -9,3 +9,10 @@ interact with Items which have attributes that, for instance, allow Items to sho
 aggregates Items in a Hashtable to track which Items are available to the Player or unavailable (for example, after those Items are used, the references to them are lost). 
 
 - What worked, what didn't, what advice would you give someone taking this course in the future?
+
+What worked was that I was able to implement all the of the methods specified in contract, and fulfill the rubric requirements. The code also compiles and behaves with methods which have functions that are related to their names and useful for a class representing
+the Player character in a video game. 
+
+What did not work is that I have not made a functional or interesting game yet, as that would require some restructuring and nonlinear room connections, as well as a connection between the Player currentRoom number and a Room object which allows there to be different items available depending on the value of currentRoom. I also would like for the player to be able to enter plain text commands like "USE APPLE"which will run code that allows them to play the game. 
+
+I would recommend them look up interfaces on an online guide or video to better solidify the concept, and then also start the assignment early to have plenty of time to code and test out idea for their intended class. 

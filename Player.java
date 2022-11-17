@@ -102,6 +102,12 @@ public class Player {
         }
     }
 
+    /**
+     * Allows the player to fly to an area of the flyableMap if there is a area present at the coordinates x,y
+     * @param x horizontal coordinate on the flyableMap array
+     * @param y vertical coordinate on the flyableMap array
+     * @return boolean showing whether or not the Player can fly to those coordinates 
+     */
     public boolean fly(int x, int y) { 
         if (game.flyableMap[x][y]==null) { 
             System.out.println("There is nothing out here to fly to");
