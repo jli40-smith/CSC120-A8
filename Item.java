@@ -1,9 +1,9 @@
 public class Item {
-    String name;
-    String description;
+    private String name;
+    private String description;
     //boolean consumable;
-    boolean consumed; 
-    boolean inHands = false;
+    private boolean consumed; 
+    private boolean inHands = false;
 
     /** 
      * Constructs an Item

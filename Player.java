@@ -1,11 +1,17 @@
+import java.util.ArrayList;
+
 public class Player {
     String name = "Adventurer";
-    int hP = 20;
-    int size = 1; //Player is at normal size 
-    boolean canSleep = false;
-    int currentRoom = 0; 
+    private int hP = 20;
+    private int size = 1; //Player is at normal size 
+    private boolean canSleep = false;
+    private Room currentRoom; 
+    private ArrayList inventory; 
+    Game game; 
 
-
+    public Player(Game game) { 
+        this.game = game;
+    }
 
 /**
  * Decreases the player's size by one if they are enlarged or at normal size 
@@ -43,9 +49,36 @@ public class Player {
         }
     }
 
+    /** 
+     * Grabs and adds an item's name to the Player's inventory 
+     * @param item String name of the item being grabbed 
+     */
+    void grab(String item) { 
+        inventory.add(item); 
+    }
+
+    /** 
+     * Drops an item and removes its name from the Player's inventory
+     * @param item name of the item being dropped 
+     */
+    String drop(String item) { 
+        inventory.remove(item);
+        return item; 
+    }
+
+    
+    
+
 
     public static void main(String[] args) {
-        
+        Game myGame = new Game(); 
+
+        //Testing all items list 
+        Item apple = new Item("apple", "A nutritious red fruit", true, false); 
+        myGame.allItems.put("apple", apple);
+
+        new Player(myGame); 
+
     }
 
 
