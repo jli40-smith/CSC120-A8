@@ -6,7 +6,7 @@ public class Player {
     private int size = 1; //Player is at normal size 
     private boolean canSleep = false;
     private Room currentRoom; 
-    private ArrayList inventory; 
+    private ArrayList inventory = new ArrayList<String>(); 
     Game game; 
 
     public Player(Game game) { 
@@ -54,30 +54,73 @@ public class Player {
      * @param item String name of the item being grabbed 
      */
     void grab(String item) { 
-        inventory.add(item); 
+        if (game.allItems.containsKey(item)) {
+            inventory.add(item); 
+        } else { 
+            System.out.println("That item is not available");
+        }
     }
 
     /** 
-     * Drops an item and removes its name from the Player's inventory
+     * Drops an item and removes its name from the Player's inventory if it is in the inventory
      * @param item name of the item being dropped 
+     * @return String name of the dropped item 
      */
     String drop(String item) { 
-        inventory.remove(item);
-        return item; 
+        if (inventory.contains(item)) { 
+            inventory.remove(item);
+            return item;
+        } else {
+            return item; 
+        }
+
     }
 
+    /**
+     * Allows player to examine an Item by printing out an item's description 
+     * @param item which is to be examined 
+     */
+    void examine(String item) { 
+        if (game.allItems.containsKey(item)) {
+            System.out.println((game.allItems.get(item)));
+        } else { 
+            System.out.println("That item is not available");
+        }
+    }
     
-    
+    /**
+     * Uses an Item and removes it from the Player's inventory and the allItems Hashtable if it is in the Player's inventory, 
+     * @param item to be used 
+     */
+    void use(String item) { 
+        if (inventory.contains(item)) { 
+            this.drop(item);
+            game.allItems.remove(item); 
+            System.out.println("You have used " + item);
+        } else {
+            System.out.println("You cannot use an item you don't possess");
+        }
+    }
 
 
     public static void main(String[] args) {
         Game myGame = new Game(); 
 
-        //Testing all items list 
+        //Testing the allItems hashtable
         Item apple = new Item("apple", "A nutritious red fruit", true, false); 
         myGame.allItems.put("apple", apple);
 
-        new Player(myGame); 
+        //Testing item grab, drop, and examine methods 
+        Player playerOne = new Player(myGame); 
+        playerOne.grab("apple"); 
+        //playerOne.use("apple");
+        playerOne.examine("apple");
+        playerOne.drop("apple"); 
+        playerOne.use("apple");
+
+        //Testing fly
+        myGame.flyableMap[0][0] = "Area 1";
+        myGame.flyableMap[1][1] = "Area 2"; 
 
     }
 
