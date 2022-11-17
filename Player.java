@@ -40,7 +40,7 @@ public class Player {
     /**
      * Recharges the player's hP to 20 if canSleep is true 
      */
-    void rest() { 
+    public void rest() { 
         if (canSleep) { 
             this.hP = 20; 
             System.out.println("After a good nap, your health has been restored"); 
@@ -53,7 +53,7 @@ public class Player {
      * Grabs and adds an item's name to the Player's inventory 
      * @param item String name of the item being grabbed 
      */
-    void grab(String item) { 
+    public void grab(String item) { 
         if (game.allItems.containsKey(item)) {
             inventory.add(item); 
         } else { 
@@ -66,7 +66,7 @@ public class Player {
      * @param item name of the item being dropped 
      * @return String name of the dropped item 
      */
-    String drop(String item) { 
+    public String drop(String item) { 
         if (inventory.contains(item)) { 
             inventory.remove(item);
             return item;
@@ -80,7 +80,7 @@ public class Player {
      * Allows player to examine an Item by printing out an item's description 
      * @param item which is to be examined 
      */
-    void examine(String item) { 
+    public void examine(String item) { 
         if (game.allItems.containsKey(item)) {
             System.out.println((game.allItems.get(item)));
         } else { 
@@ -92,7 +92,7 @@ public class Player {
      * Uses an Item and removes it from the Player's inventory and the allItems Hashtable if it is in the Player's inventory, 
      * @param item to be used 
      */
-    void use(String item) { 
+    public void use(String item) { 
         if (inventory.contains(item)) { 
             this.drop(item);
             game.allItems.remove(item); 
@@ -102,7 +102,20 @@ public class Player {
         }
     }
 
+    public boolean fly(int x, int y) { 
+        if (game.flyableMap[x][y]==null) { 
+            System.out.println("There is nothing out here to fly to");
+            return false; 
+        } else {
+            System.out.println("You have flown to " + game.flyableMap[x][y]);
+            return true; 
+        }
+    }
 
+    /**
+     * Main method for testing 
+     * @param args Array for command line arguments which is not currently being used  
+     */
     public static void main(String[] args) {
         Game myGame = new Game(); 
 
@@ -113,16 +126,17 @@ public class Player {
         //Testing item grab, drop, and examine methods 
         Player playerOne = new Player(myGame); 
         playerOne.grab("apple"); 
-        //playerOne.use("apple");
+        //playerOne.use("apple"); //This works 
         playerOne.examine("apple");
         playerOne.drop("apple"); 
-        playerOne.use("apple");
 
         //Testing fly
         myGame.flyableMap[0][0] = "Area 1";
         myGame.flyableMap[1][1] = "Area 2"; 
 
-    }
+        playerOne.fly(0, 0); 
+        playerOne.fly(0, 1); 
 
+    }
 
 }
